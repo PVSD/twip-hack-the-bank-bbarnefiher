@@ -3,21 +3,32 @@ package com.company;
 import java.io.*;
 import java.util.*;
 import java.text.*;
+import java.time.*;
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	// write your code here
+        LocalDateTime ldt = LocalDateTime.now();
+        File bankLog = new File("Bank Logs.txt");
+        FileWriter fw = new FileWriter(bankLog);
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println("Start of log [" + ldt.toString().substring(11,19) + "].");
+        pw.close();
         NumberFormat fmt = NumberFormat.getNumberInstance();
         fmt.setMinimumFractionDigits(2);
         fmt.setMaximumFractionDigits(2);
         String name;
         ArrayList aryLst = new ArrayList();
         ListIterator iter = aryLst.listIterator();
+
+
+
         do {
             Scanner kbReader = new Scanner(System.in);
             System.out
                     .print("Please enter the name to whom the account belongs. (\"Exit\" to abort) ");
             name = kbReader.nextLine();
+
             if (!name.equalsIgnoreCase("EXIT")) {
                 System.out.print("Please enter the amount of the deposit. ");
                 double amount = kbReader.nextDouble();
